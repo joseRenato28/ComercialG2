@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TrabalhoG2.Models.InputStock>
+@{
+    ViewBag.Title = "Entrada de Estoque";
+}
+
+<section class="container">
+    <article>
+        <h2>Entradas de Estoque</h2>
+        <hr />
+        <a class="btn btn-info" href="/InputStock/Create">Adicionar uma nova entrada</a>
+        <br />
+    </article>
+    <article>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fornecedor</th>
+                    <th>Data de Entrada</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.supplier</td>
+                        <td>@p.entry_date.ToShortDateString()</td>
+                        <td><a href="/InputStock/Details/@p.id_input_stock" class="btn btn-info">Detalhes</a> | <a href="/InputStock/Delete/@p.id_input_stock" class="btn btn-danger">Deletar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>
+

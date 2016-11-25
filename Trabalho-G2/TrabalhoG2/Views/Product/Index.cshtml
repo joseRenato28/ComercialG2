@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TrabalhoG2.Models.Product>
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<section class="container">
+    <article>
+        <h2>Produtos</h2>
+        <hr />
+        <a class="btn btn-info" href="/Product/Create">Adicionar um novo produto</a>
+        <br />
+    </article>
+    <article>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.product_name</td>
+                        <td>@p.amount</td>
+                        <td><a href="/Product/Edit/@p.id_product" class="btn btn-info">Alterar</a> | <a href="/Product/Delete/@p.id_product" class="btn btn-danger">Deletar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>
+

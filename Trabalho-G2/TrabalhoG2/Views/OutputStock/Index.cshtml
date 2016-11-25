@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TrabalhoG2.Models.OutputStock>
+@{
+    ViewBag.Title = "Saída de Estoque";
+}
+
+<section class="container">
+    <article>
+        <h2>Saídas de Estoque</h2>
+        <hr />
+        <a class="btn btn-info" href="/OutputStock/Create">Adicionar uma nova saída</a>
+        <br />
+    </article>
+    <article>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Setor</th>
+                    <th>Data de Saída</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.sector</td>
+                        <td>@p.output_date.ToShortDateString()</td>
+                        <td><a href="/OutputStock/Details/@p.id_output_stock" class="btn btn-info">Detalhes</a> | <a href="/OutputStock/Delete/@p.id_output_stock" class="btn btn-danger">Deletar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>
+

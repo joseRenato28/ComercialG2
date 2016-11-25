@@ -1,1 +1,3 @@
-# ComercialG2
+# Trabalho Linguagem de programação comercial
+
+Gerenciador de estoque

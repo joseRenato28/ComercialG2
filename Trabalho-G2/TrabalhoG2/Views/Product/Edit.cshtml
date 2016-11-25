@@ -1,0 +1,26 @@
+﻿@model TrabalhoG2.Models.Product
+@{
+    ViewBag.Title = "Alterar Produto";
+}
+
+<section class="container">
+    <article>
+        <h2>Alterar produto</h2>
+        <hr />
+        <a class="btn btn-info" href="/Product/Index">Voltar</a>
+    </article>
+    <article>
+        <form method="post" action="/Product/Edit">
+            <input type="hidden" value="@Model.id_product" name="id_product" />
+            <div class="form-group">
+                <label>Nome do Produto</label>
+                <br />
+                <input value="@Model.product_name" required="true" type="text" name="product_name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="form-control" />
+            </div>
+        </form>
+    </article>
+</section>
+

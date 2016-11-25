@@ -1,0 +1,77 @@
+﻿@model TrabalhoG2.Models.InputStock
+@{
+    ViewBag.Title = "Detalhes da entrada de estoque";
+}
+
+<section class="container">
+    <article>
+        <h2>Entradas de Estoque</h2>
+        <hr />
+        <a class="btn btn-info" href="/InputStock/Create">Adicionar uma nova entrada</a>
+        <br />
+    </article>
+    <article>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Fornecedor</th>
+                    <th>Data de Entrada</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>@Model.supplier</td>
+                        <td>@Model.entry_date.ToShortDateString()</td>
+                        <td><a href="/InputStock/Delete/@Model.id_input_stock" class="btn btn-danger">Deletar</a></td>
+                    </tr>
+            </tbody>
+        </table>
+    </article>
+    <article>
+        <h4>Produtos</h4>
+        <form class="form-inline" method="post" action="/InputStock/CreateStockProduct">
+            <input name="input_stock.id_input_stock" type="hidden" value="@Model.id_input_stock" />
+            <div class="form-group">
+                <select class="form-control" name="product.id_product">
+                    @foreach (TrabalhoG2.Models.Product p in ViewBag.product)
+                    {
+                        <option value="@p.id_product">@p.product_name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" required="true" type="text" name="value" placeholder="Valor do Produto" />
+            </div>
+            <div class="form-group">
+                <input class="form-control" required="true" type="text" name="amount" placeholder="Quantidade do Produto" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Cadastrar Produto" />
+            </div>
+        </form>
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TrabalhoG2.Models.InputStockProduct p in ViewBag.inputStockProduct)
+                {
+                    <tr>
+                        <td>@p.product.product_name</td>
+                        <td>@p.value</td>
+                        <td>@p.amount</td>
+                        <td><a href="/InputStock/DeleteOne/@p.id_input_stock_product" class="btn btn-danger">Deletar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </article>
+</section>
+
